@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Waybill\Customer\Infrastructure\Persistence\Eloquent\CustomerModel;
 
 /**
  * @extends Factory<User>
@@ -25,6 +27,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_type' => UserType::CUSTOMER,
+            'customer_id' => CustomerModel::factory(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -34,6 +38,22 @@ class UserFactory extends Factory
             'two_factor_recovery_codes' => null,
             'two_factor_confirmed_at' => null,
         ];
+    }
+
+    public function customer(): static
+    {
+        return $this->state(fn () => [
+            'user_type' => UserType::CUSTOMER,
+            'customer_id' => CustomerModel::factory(),
+        ]);
+    }
+
+    public function operator(): static
+    {
+        return $this->state(fn () => [
+            'user_type' => UserType::OPERATOR,
+            'customer_id' => null,
+        ]);
     }
 
     /**
