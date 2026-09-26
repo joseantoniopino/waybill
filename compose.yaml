@@ -1,5 +1,5 @@
 services:
-    laravel.test:
+    app:
         build:
             context: './vendor/laravel/sail/runtimes/8.5'
             dockerfile: Dockerfile
@@ -16,6 +16,8 @@ services:
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            XDEBUG_SESSION: '${XDEBUG_SESSION:-}'
+            PHP_IDE_CONFIG: '${PHP_IDE_CONFIG:-serverName=waybill}'
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
