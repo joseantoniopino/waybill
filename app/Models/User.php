@@ -64,6 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
             : $initials;
     }
 
+    /**
+     * @return BelongsTo<CustomerModel, $this>
+     */
     public function customer(): BelongsTo
     {
         return $this->belongsTo(CustomerModel::class);

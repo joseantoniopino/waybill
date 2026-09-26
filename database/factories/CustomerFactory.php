@@ -4,9 +4,11 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 use Waybill\Customer\Infrastructure\Persistence\Eloquent\CustomerModel;
 
+/**
+ * @extends Factory<CustomerModel>
+ */
 #[UseModel(CustomerModel::class)]
 class CustomerFactory extends Factory
 {

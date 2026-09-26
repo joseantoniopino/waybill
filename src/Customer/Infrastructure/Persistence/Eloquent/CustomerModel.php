@@ -19,6 +19,9 @@ class CustomerModel extends Model
 
     protected $table = 'customers';
 
+    /**
+     * @return HasMany<User, $this>
+     */
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
